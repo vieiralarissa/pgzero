@@ -30,7 +30,7 @@ class Hero:
         self.hurt_anim, self.hurt_tmr, self.morto = False, 0, False
         self.complete_anim, self.complete_tmr = False, 0
         self.img = "idle_0"
-        self.lives = 3  # <- O herói tem tres vidas!
+        self.lives = 3 !
 
     def rect(self): return Rect(self.x, self.y, self.w, self.h)
 
@@ -65,7 +65,7 @@ class Hero:
                 self.vy, self.no_chao = 0, True
         self.x = max(0, min(WIDTH-self.w, self.x))
         if self.y > HEIGHT and not self.hurt_anim and not self.complete_anim and not self.morto:
-            self.take_damage()  # Se cair, também perde vida
+            self.take_damage()  
         self.animar(mv)
 
     def animar(self, mv):
@@ -170,12 +170,10 @@ def update():
     if state == STATE_PLAY:
         hero.update()
         for e in enemies: e.update()
-        # Herói ataca inimigo (normal)
         for e in enemies:
             if not e.dead and hero.rect().colliderect(e.rect()):
                 if hero.attack_anim and e.state != "hurt" and not e.dying:
                     e.take_damage()
-        # Inimigo só causa dano durante a animação de ataque, em qualquer frame
         for e in enemies:
             if (not e.dead and not e.dying and e.attack_anim and
                 hero.rect().colliderect(e.rect()) and not hero.hurt_anim and not hero.complete_anim and
@@ -200,7 +198,7 @@ def draw():
         for plat in platforms:
             screen.draw.filled_rect(plat, (72, 61, 139))
             screen.draw.rect(plat, (48, 38, 90))
-        # Exibe vidas (corações) no canto superior esquerdo
+
         for i in range(hero.lives):
             screen.blit("coracao", (24 + i * 40, 24))
         item.draw(); hero.draw()
