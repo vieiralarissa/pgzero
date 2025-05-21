@@ -30,7 +30,7 @@ class Hero:
         self.hurt_anim, self.hurt_tmr, self.morto = False, 0, False
         self.complete_anim, self.complete_tmr = False, 0
         self.img = "idle_0"
-        self.lives = 3 !
+        self.lives = 3
 
     def rect(self): return Rect(self.x, self.y, self.w, self.h)
 
